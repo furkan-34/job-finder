@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "schema_version": "1.0",
+    "updated_at": "2026-10-23",
+    "source_cv": "cv_2026-10.pdf",
+    "pending_confirmations": [
+      {
+        "path": "/summary/total_years_experience",
+        "value": 6,
+        "reason": "Computed from experience dates; overlapping internship may or may not count."
+      }
+    ]
+  },
+  "identity": {
+    "full_name": "Ayşe Yılmaz",
+    "email": "ayse.yilmaz@example.com",
+    "location": { "city": "Istanbul", "country": "TR" },
+    "phone": "+90 555 000 00 00",
+    "linkedin": "https://www.linkedin.com/in/example",
+    "github": "https://github.com/example"
+  },
+  "summary": {
+    "headline": "Senior Backend Engineer (Python, distributed systems)",
+    "total_years_experience": 6,
+    "about": "Backend engineer focused on data-heavy services and reliability."
+  },
+  "experience": [
+    {
+      "company": "Example Payments",
+      "title": "Senior Backend Engineer",
+      "start": "2023-03",
+      "end": null,
+      "location": "Istanbul, TR",
+      "work_mode": "hybrid",
+      "technologies": ["Python", "FastAPI", "PostgreSQL", "Kafka", "AWS"],
+      "achievements": [
+        "Cut p95 latency of the payment API from 420 ms to 140 ms by redesigning the caching layer.",
+        "Led migration of 12 services to Kubernetes with zero downtime."
+      ]
+    },
+    {
+      "company": "Example Retail",
+      "title": "Backend Engineer",
+      "start": "2020-07",
+      "end": "2023-02",
+      "location": "Istanbul, TR",
+      "work_mode": "onsite",
+      "technologies": ["Python", "Django", "Redis"],
+      "achievements": [
+        "Built the order-tracking service handling 2M events/day."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Example Technical University",
+      "degree": "BSc",
+      "field": "Computer Engineering",
+      "start_year": 2015,
+      "end_year": 2020,
+      "gpa": "3.3/4.0"
+    }
+  ],
+  "skills": {
+    "technical": [
+      { "name": "Python", "level": "expert" },
+      { "name": "PostgreSQL", "level": "advanced" },
+      { "name": "Kubernetes", "level": "intermediate" }
+    ],
+    "languages": [
+      { "language": "Turkish", "level": "native" },
+      { "language": "English", "level": "C1" }
+    ]
+  },
+  "work_authorization": {
+    "countries_without_sponsorship": ["TR"],
+    "needs_sponsorship_elsewhere": true
+  },
+  "extras": {
+    "certifications": [
+      { "name": "AWS Certified Developer – Associate", "issuer": "Amazon Web Services", "year": 2024 }
+    ]
+  },
+  "preferences": {
+    "target_roles": ["Senior Backend Engineer", "Platform Engineer"],
+    "seniority": ["senior"],
+    "locations": [
+      { "place": "Istanbul, TR", "work_modes": ["hybrid", "onsite"] },
+      { "place": "EU", "work_modes": ["remote"] }
+    ],
+    "employment_types": ["full_time"],
+    "dealbreakers": {
+      "industries": ["gambling"],
+      "companies": [],
+      "keywords": ["crypto"],
+      "confirmed": true
+    },
+    "min_salary": { "amount": 60000, "currency": "EUR", "period": "year", "gross": true },
+    "open_to_relocation": true,
+    "office_days_per_week": 3,
+    "availability": { "notice_period_weeks": 4 },
+    "nice_to_haves": ["Strong engineering culture", "Learning budget"],
+    "company_sizes": ["51-200", "201-1000"]
+  }
+}

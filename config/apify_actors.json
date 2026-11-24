@@ -1,0 +1,397 @@
+{
+  "actors": [
+    {
+      "name": "APIFY_LINKEDIN_SCRAPER",
+      "label": "LinkedIn Jobs Scraper",
+      "actor_id": "curious_coder/linkedin-jobs-scraper",
+      "site": "linkedin",
+      "cost_per_1000_results_usd": 1.0,
+      "notes": "LinkedIn job search; seniority and work mode go into the keywords (AI search since August 2026). Never given personal LinkedIn cookies.",
+      "input": {
+        "keywords": "{keywords}",
+        "location": "{location}",
+        "datePosted": "{date_posted}",
+        "limitPerSource": "{limit}",
+        "scrapeCompany": false
+      },
+      "output": {
+        "source_id": "id",
+        "url": "link",
+        "apply_url": "applyUrl",
+        "title": "title",
+        "company_name": "companyName",
+        "company_url": "companyLinkedinUrl",
+        "company_website": "companyWebsite",
+        "company_size": "companyEmployeesCount",
+        "location": "location",
+        "work_modes": {"field": "workplaceTypes", "transform": "work_modes"},
+        "employment_type": "employmentType",
+        "seniority": "seniorityLevel",
+        "salary": {"field": "salaryInfo", "transform": "join"},
+        "description": "descriptionText",
+        "posted_at": "postedAt",
+        "applicants_count": "applicantsCount"
+      }
+    },
+    {
+      "name": "APIFY_REED_SCRAPER",
+      "label": "Reed.co.uk Jobs Scraper",
+      "actor_id": "scrapersdelight/reed-jobs-scraper",
+      "site": "reed",
+      "cost_per_1000_results_usd": 0.5,
+      "notes": "reed.co.uk, UK jobs only: a location must be in the UK (the city is searched within 10 miles; a country-only location searches the whole UK). Work-mode words are left out of the keywords. No 'past month' date filter. Easy-apply postings have only the Reed page as apply link.",
+      "input": {
+        "keywords": "{keywords}",
+        "location": "{city}",
+        "proximity": 10,
+        "datePosted": "{date_posted}",
+        "maxItems": "{limit}",
+        "fetchDetails": true,
+        "monitorMode": false
+      },
+      "drop_words": [
+        "remote",
+        "hybrid",
+        "onsite",
+        "on-site"
+      ],
+      "date_posted_values": {
+        "anyTime": "anytime",
+        "past24Hours": "today",
+        "pastWeek": "lastweek"
+      },
+      "location_countries": [
+        "United Kingdom",
+        "UK",
+        "Great Britain",
+        "England",
+        "Scotland",
+        "Wales",
+        "Northern Ireland"
+      ],
+      "output": {
+        "source_id": "job_id",
+        "url": "job_url",
+        "apply_url": ["external_url", "job_url"],
+        "title": "title",
+        "company_name": "recruiter_name",
+        "company_url": "recruiter_profile_url",
+        "location": "location",
+        "work_modes": {"field": "remote_working", "transform": "work_modes"},
+        "employment_type": "contract_type",
+        "salary": "salary_display",
+        "description": "description_text",
+        "posted_at": "posted_date",
+        "applicants_count": "applications"
+      }
+    },
+    {
+      "name": "APIFY_INDEED_UK_SCRAPER",
+      "label": "Indeed UK Jobs Scraper",
+      "actor_id": "valig/indeed-jobs-scraper",
+      "site": "indeed",
+      "cost_per_1000_results_usd": 0.1,
+      "notes": "uk.indeed.com, UK jobs only: a location must be in the UK (the city is searched as Indeed resolves it; a country-only location searches the whole UK). Work-mode words are left out of the keywords. Date filters are 24 hours, 7 days (no 'past month'; 'any time' sends no filter). Apply links may be Indeed's own page.",
+      "input": {
+        "country": "uk",
+        "title": "{keywords}",
+        "location": "{city}",
+        "limit": "{limit}",
+        "datePosted": "{date_posted}"
+      },
+      "drop_words": ["remote", "hybrid", "onsite", "on-site"],
+      "date_posted_values": {
+        "anyTime": null,
+        "past24Hours": "1",
+        "pastWeek": "7"
+      },
+      "location_countries": [
+        "United Kingdom",
+        "UK",
+        "Great Britain",
+        "England",
+        "Scotland",
+        "Wales",
+        "Northern Ireland"
+      ],
+      "output": {
+        "source_id": "key",
+        "url": ["url", "jobUrl"],
+        "apply_url": ["jobUrl", "url"],
+        "title": "title",
+        "company_name": "employer.name",
+        "company_url": "employer.companyPageUrl",
+        "company_website": "employer.corporateWebsite",
+        "company_size": "employer.employeesCount",
+        "location": "location.city",
+        "description": "description.text",
+        "posted_at": ["datePublished", "dateOnIndeed"]
+      }
+    },
+    {
+      "name": "APIFY_TOTALJOBS_SCRAPER",
+      "label": "Totaljobs Jobs Scraper",
+      "actor_id": "valig/totaljobs-jobs-scraper",
+      "site": "totaljobs",
+      "cost_per_1000_results_usd": 0.4,
+      "notes": "totaljobs.com, UK jobs only: a location must be in the UK (the city is searched within 10 miles; a country-only location searches the whole UK). Work-mode words are left out of the keywords. Date filters are 24 hours, 7 days (no 'past month'; 'any time' sends no filter). A new, small actor. Apply links may be Totaljobs' own page.",
+      "input": {
+        "keywords": "{keywords}",
+        "location": "{city}",
+        "radius": "10",
+        "postedWithin": "{date_posted}",
+        "limit": "{limit}"
+      },
+      "drop_words": ["remote", "hybrid", "onsite", "on-site"],
+      "date_posted_values": {
+        "anyTime": null,
+        "past24Hours": "1",
+        "pastWeek": "7"
+      },
+      "location_countries": [
+        "United Kingdom",
+        "UK",
+        "Great Britain",
+        "England",
+        "Scotland",
+        "Wales",
+        "Northern Ireland"
+      ],
+      "output": {
+        "source_id": "id",
+        "url": "url",
+        "apply_url": "url",
+        "title": "title",
+        "company_name": "company.name",
+        "company_url": "company.url",
+        "company_website": "company.website",
+        "company_size": "company.employees",
+        "location": "location",
+        "employment_type": "workType",
+        "salary": "salary",
+        "description": {"field": "description", "transform": "html_text"},
+        "posted_at": "datePosted"
+      }
+    },
+    {
+      "name": "FREEHIRE",
+      "label": "freehire.me",
+      "kind": "freehire",
+      "actor_id": "freehire.me",
+      "site": "freehire",
+      "cost_per_1000_results_usd": 0,
+      "notes": "Free JSON API of the freehire.me job aggregator (about 50 ATS and job boards, tech roles); no token. Searches by country: the part of the location after the last comma must be in `countries`; the city is not used. Apply links may be a job board's redirect, not the company's form.",
+      "input": {
+        "q": "{keywords}",
+        "countries": "{country}",
+        "limit": "{limit}",
+        "posted_within_days": "{days}"
+      },
+      "drop_words": [
+        "remote",
+        "hybrid",
+        "onsite",
+        "on-site"
+      ],
+      "countries": {
+        "turkey": "tr",
+        "türkiye": "tr",
+        "germany": "de",
+        "netherlands": "nl",
+        "united kingdom": "gb",
+        "uk": "gb",
+        "united states": "us",
+        "usa": "us",
+        "france": "fr",
+        "spain": "es",
+        "italy": "it",
+        "poland": "pl",
+        "portugal": "pt",
+        "ireland": "ie",
+        "sweden": "se",
+        "denmark": "dk",
+        "switzerland": "ch",
+        "austria": "at",
+        "belgium": "be",
+        "canada": "ca",
+        "united arab emirates": "ae"
+      },
+      "output": {
+        "source_id": "public_slug",
+        "url": "url",
+        "apply_url": "url",
+        "title": "title",
+        "company_name": "company",
+        "location": "location",
+        "employment_type": "enrichment.employment_type",
+        "description": "description",
+        "posted_at": "posted_at"
+      }
+    },
+    {
+      "name": "GREENHOUSE",
+      "label": "Greenhouse company boards",
+      "kind": "greenhouse",
+      "actor_id": "boards-api.greenhouse.io",
+      "site": "greenhouse",
+      "cost_per_1000_results_usd": 0,
+      "notes": "Greenhouse ATS. Free company job board API, no token. There is no search on the service: it reads every posting of the companies in `boards` (board name -> company name; edit the list to choose companies) and keeps those whose title has every keyword (work-mode words dropped), whose location is in the search's country (`countries`; the city counts too) and that fit the date filter. Apply links may be the company's own careers page.",
+      "input": {
+        "boards": "{boards}",
+        "title_words": "{keywords}",
+        "location_words": "{location_words}",
+        "posted_within_days": "{days}",
+        "limit": "{limit}"
+      },
+      "drop_words": ["remote", "hybrid", "onsite", "on-site"],
+      "any_location": ["Worldwide", "Anywhere", "Global"],
+      "countries": {
+        "Turkey": ["Turkey", "Türkiye", "Istanbul", "Ankara", "Izmir"],
+        "Germany": ["Germany", "Deutschland", "Berlin", "Munich", "München", "Hamburg", "Frankfurt", "Cologne"],
+        "Netherlands": ["Netherlands", "Amsterdam", "Rotterdam", "Utrecht", "Eindhoven"],
+        "United Kingdom": ["United Kingdom", "UK", "England", "Scotland", "London", "Manchester", "Edinburgh"],
+        "UK": ["United Kingdom", "UK", "England", "Scotland", "London", "Manchester", "Edinburgh"],
+        "Ireland": ["Ireland", "Dublin"],
+        "France": ["France", "Paris", "Lyon"],
+        "Spain": ["Spain", "Madrid", "Barcelona"],
+        "Portugal": ["Portugal", "Lisbon", "Porto"],
+        "Poland": ["Poland", "Warsaw", "Krakow", "Kraków", "Wroclaw"],
+        "Switzerland": ["Switzerland", "Zurich", "Zürich", "Geneva"],
+        "Sweden": ["Sweden", "Stockholm"],
+        "United States": ["United States", "USA", "US"],
+        "USA": ["United States", "USA", "US"],
+        "Canada": ["Canada", "Toronto", "Vancouver", "Montreal"],
+        "EU": ["Europe", "European Union", "EU", "EMEA"],
+        "Europe": ["Europe", "European Union", "EU", "EMEA"],
+        "EMEA": ["EMEA", "Europe"]
+      },
+      "boards": {
+        "gitlab": "GitLab",
+        "cloudflare": "Cloudflare",
+        "datadog": "Datadog",
+        "elastic": "Elastic",
+        "getyourguide": "GetYourGuide"
+      },
+      "output": {
+        "source_id": "id",
+        "url": "absolute_url",
+        "apply_url": "absolute_url",
+        "title": "title",
+        "company_name": ["company_name", "_board.company"],
+        "location": "location.name",
+        "description": {"field": "content", "transform": "html_text"},
+        "posted_at": "first_published"
+      }
+    },
+    {
+      "name": "LEVER",
+      "label": "Lever company boards",
+      "kind": "lever",
+      "actor_id": "api.lever.co",
+      "site": "lever",
+      "cost_per_1000_results_usd": 0,
+      "notes": "Lever ATS. Free company job board API, no token. There is no search on the service: it reads every posting of the companies in `boards` (board name -> company name; edit the list to choose companies) and keeps those whose title has every keyword (work-mode words dropped), whose location is in the search's country (`countries`; the city counts too) and that fit the date filter.",
+      "input": {
+        "boards": "{boards}",
+        "title_words": "{keywords}",
+        "location_words": "{location_words}",
+        "posted_within_days": "{days}",
+        "limit": "{limit}"
+      },
+      "drop_words": ["remote", "hybrid", "onsite", "on-site"],
+      "any_location": ["Worldwide", "Anywhere", "Global"],
+      "countries": {
+        "Turkey": ["Turkey", "Türkiye", "Istanbul", "Ankara", "Izmir"],
+        "Germany": ["Germany", "Deutschland", "Berlin", "Munich", "München", "Hamburg", "Frankfurt", "Cologne"],
+        "Netherlands": ["Netherlands", "Amsterdam", "Rotterdam", "Utrecht", "Eindhoven"],
+        "United Kingdom": ["United Kingdom", "UK", "England", "Scotland", "London", "Manchester", "Edinburgh"],
+        "UK": ["United Kingdom", "UK", "England", "Scotland", "London", "Manchester", "Edinburgh"],
+        "Ireland": ["Ireland", "Dublin"],
+        "France": ["France", "Paris", "Lyon"],
+        "Spain": ["Spain", "Madrid", "Barcelona"],
+        "Portugal": ["Portugal", "Lisbon", "Porto"],
+        "Poland": ["Poland", "Warsaw", "Krakow", "Kraków", "Wroclaw"],
+        "Switzerland": ["Switzerland", "Zurich", "Zürich", "Geneva"],
+        "Sweden": ["Sweden", "Stockholm"],
+        "United States": ["United States", "USA", "US"],
+        "USA": ["United States", "USA", "US"],
+        "Canada": ["Canada", "Toronto", "Vancouver", "Montreal"],
+        "EU": ["Europe", "European Union", "EU", "EMEA"],
+        "Europe": ["Europe", "European Union", "EU", "EMEA"],
+        "EMEA": ["EMEA", "Europe"]
+      },
+      "boards": {
+        "spotify": "Spotify",
+        "palantir": "Palantir"
+      },
+      "output": {
+        "source_id": "id",
+        "url": "hostedUrl",
+        "apply_url": ["applyUrl", "hostedUrl"],
+        "title": "text",
+        "company_name": "_board.company",
+        "location": "categories.location",
+        "work_modes": {"field": "workplaceType", "transform": "work_modes"},
+        "employment_type": "categories.commitment",
+        "description": {"fields": ["descriptionPlain", "lists", "additionalPlain"], "transform": "html_text"},
+        "posted_at": {"field": "createdAt", "transform": "epoch_ms"}
+      }
+    },
+    {
+      "name": "ASHBY",
+      "label": "Ashby company boards",
+      "kind": "ashby",
+      "actor_id": "api.ashbyhq.com",
+      "site": "ashby",
+      "cost_per_1000_results_usd": 0,
+      "notes": "Ashby ATS. Free company job board API, no token. There is no search on the service: it reads every posting of the companies in `boards` (board name -> company name; edit the list to choose companies) and keeps those whose title has every keyword (work-mode words dropped), whose location is in the search's country (`countries`; the city counts too) and that fit the date filter.",
+      "input": {
+        "boards": "{boards}",
+        "title_words": "{keywords}",
+        "location_words": "{location_words}",
+        "posted_within_days": "{days}",
+        "limit": "{limit}"
+      },
+      "drop_words": ["remote", "hybrid", "onsite", "on-site"],
+      "any_location": ["Worldwide", "Anywhere", "Global"],
+      "countries": {
+        "Turkey": ["Turkey", "Türkiye", "Istanbul", "Ankara", "Izmir"],
+        "Germany": ["Germany", "Deutschland", "Berlin", "Munich", "München", "Hamburg", "Frankfurt", "Cologne"],
+        "Netherlands": ["Netherlands", "Amsterdam", "Rotterdam", "Utrecht", "Eindhoven"],
+        "United Kingdom": ["United Kingdom", "UK", "England", "Scotland", "London", "Manchester", "Edinburgh"],
+        "UK": ["United Kingdom", "UK", "England", "Scotland", "London", "Manchester", "Edinburgh"],
+        "Ireland": ["Ireland", "Dublin"],
+        "France": ["France", "Paris", "Lyon"],
+        "Spain": ["Spain", "Madrid", "Barcelona"],
+        "Portugal": ["Portugal", "Lisbon", "Porto"],
+        "Poland": ["Poland", "Warsaw", "Krakow", "Kraków", "Wroclaw"],
+        "Switzerland": ["Switzerland", "Zurich", "Zürich", "Geneva"],
+        "Sweden": ["Sweden", "Stockholm"],
+        "United States": ["United States", "USA", "US"],
+        "USA": ["United States", "USA", "US"],
+        "Canada": ["Canada", "Toronto", "Vancouver", "Montreal"],
+        "EU": ["Europe", "European Union", "EU", "EMEA"],
+        "Europe": ["Europe", "European Union", "EU", "EMEA"],
+        "EMEA": ["EMEA", "Europe"]
+      },
+      "boards": {
+        "linear": "Linear",
+        "supabase": "Supabase",
+        "ashby": "Ashby"
+      },
+      "output": {
+        "source_id": "id",
+        "url": "jobUrl",
+        "apply_url": ["applyUrl", "jobUrl"],
+        "title": "title",
+        "company_name": "_board.company",
+        "location": "location",
+        "work_modes": {"field": "workplaceType", "transform": "work_modes"},
+        "employment_type": "employmentType",
+        "salary": "compensation.compensationTierSummary",
+        "description": {"field": ["descriptionPlain", "descriptionHtml"], "transform": "html_text"},
+        "posted_at": "publishedAt"
+      }
+    }
+  ]
+}

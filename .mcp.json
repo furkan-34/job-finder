@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@0.0.83",
+        "--user-data-dir",
+        "data/apply/browser-profile",
+        "--output-dir",
+        "data/apply/browser-output",
+        "--snapshot-mode",
+        "none",
+        "--console-level",
+        "error",
+        "--block-service-workers"
+      ]
+    }
+  }
+}

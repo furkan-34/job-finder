@@ -1,0 +1,103 @@
+{
+  "notes": "Rules of the stage 2c safety check (src/jobfinder/safety.py). Patterns are case-insensitive, multi-line regular expressions matched against every text field of a posting (title, company, location, description, links, ...); domains match themselves and their subdomains.",
+  "block": {
+    "fee_request": [
+      "\\b(application|registration|training|onboarding|processing|placement|visa|equipment|starter kit)\\s+(fee|fees|charge|cost)s?\\b",
+      "\\b(pay|paying|payment of)\\s+(a|an|the|your)?\\s*(fee|deposit)\\b",
+      "\\bupfront\\s+(payment|fee|deposit)\\b",
+      "\\bsecurity deposit\\b",
+      "\\b(western union|moneygram)\\b",
+      "\\b(gift|itunes|steam)\\s?cards?\\b",
+      "\\b(bitcoin|btc|usdt|crypto)\\s+(payment|transfer|deposit)\\b",
+      "ba[şs]vuru\\s+[üu]creti",
+      "kay[ıi]t\\s+[üu]creti",
+      "e[ğg]itim\\s+[üu]creti",
+      "dosya\\s+masraf[ıi]",
+      "depozito",
+      "[öo]n\\s+[öo]deme"
+    ],
+    "prompt_injection": [
+      "\\b(ignore|disregard|forget|override|bypass)\\s+(all\\s+|any\\s+)?(of\\s+)?(the\\s+|your\\s+|these\\s+)?(previous|prior|above|earlier|preceding|system|original)\\s+(instructions|prompts?|rules|messages|guidelines|context)",
+      "\\b(system|developer)\\s+(prompt|message|instructions)\\b",
+      "\\bnew\\s+(instructions|rules|task)\\s*:",
+      "^\\s*#{2,}\\s*(instruction|system|prompt)",
+      "<\\|?\\s*/?\\s*(system|im_start|im_end|instructions?|assistant)\\s*\\|?>",
+      "\\[/?(system|inst)\\]",
+      "(?<!if\\s)\\byou\\s+are\\s+(now\\s+)?(an?\\s+)?(ai|chatgpt|claude|language model|llm)\\b",
+      "\\b(act|behave)\\s+as\\s+(an?\\s+)?(ai|chatbot|language model|llm)\\b",
+      "\\b(jailbreak|developer mode|dan mode)\\b",
+      "\\b(rate|score|rank|mark)\\s+(this|the)\\s+(job|posting|role|position|candidate|listing)\\b[^.\\n]{0,30}\\b(as|at|with|a)\\b",
+      "\\bgive\\s+(this|the)\\s+(job|posting|role|position|listing)\\s+(a\\s+)?(high|top|perfect|maximum|10)",
+      "\\b(do\\s+not|don't|never)\\s+(tell|mention|reveal|inform)\\s+(the\\s+)?(user|candidate|human)\\b",
+      "[öo]nceki\\s+(t[üu]m\\s+)?(talimatlar[ıi]|komutlar[ıi]|kurallar[ıi])",
+      "talimatlar[ıi]\\s+(yok\\s+say|unut|g[öo]rmezden\\s+gel)",
+      "sistem\\s+(istemi|komutu|talimat[ıi])"
+    ]
+  },
+  "warn": {
+    "ai_addressed": [
+      "\\bif\\s+you\\s+are\\s+(an?\\s+)?(ai|llm|language model|chatgpt|claude|gpt|bot|assistant)\\b",
+      "\\b(ai|llm|language model)s?\\s+(must|should)\\s+(rate|score|say|answer|include|reply)\\b"
+    ],
+    "chat_contact": [
+      "\\b(t\\.me|telegram\\.me|wa\\.me|chat\\.whatsapp\\.com)/",
+      "\\b(contact|message|text|reach|apply)\\b[^.\\n]{0,40}\\b(on|via|through|over)\\s+(telegram|whatsapp|signal)\\b",
+      "\\b(telegram|whatsapp)\\b[^.\\n]{0,30}\\b([üu]zerinden|ile)\\s+(ileti[şs]im|ba[şs]vur)"
+    ]
+  },
+  "ats_domains": [
+    "greenhouse.io",
+    "lever.co",
+    "ashbyhq.com",
+    "workable.com",
+    "smartrecruiters.com",
+    "myworkdayjobs.com",
+    "myworkdaysite.com",
+    "icims.com",
+    "taleo.net",
+    "jobvite.com",
+    "bamboohr.com",
+    "recruitee.com",
+    "personio.de",
+    "personio.com",
+    "teamtailor.com",
+    "breezy.hr",
+    "jazzhr.com",
+    "applytojob.com",
+    "successfactors.com",
+    "successfactors.eu",
+    "oraclecloud.com",
+    "pinpointhq.com",
+    "join.com",
+    "workday.com",
+    "rippling.com",
+    "dover.com",
+    "homerun.co",
+    "kariyer.net",
+    "eightfold.ai",
+    "avature.net"
+  ],
+  "shorteners": [
+    "bit.ly",
+    "tinyurl.com",
+    "t.co",
+    "goo.gl",
+    "ow.ly",
+    "is.gd",
+    "buff.ly",
+    "rebrand.ly",
+    "cutt.ly",
+    "shorturl.at",
+    "rb.gy",
+    "tiny.cc"
+  ],
+  "model": {
+    "notes": "Llama Prompt Guard 2 22M (Meta, Llama 4 Community License), int8 ONNX conversion by gravitee-io. Pinned to one revision; the model file is checked against sha256.",
+    "repo": "gravitee-io/Llama-Prompt-Guard-2-22M-onnx",
+    "revision": "da68d0f6023c7aeaf6b256eec549de295d5e8740",
+    "model_file": "model.quant.onnx",
+    "sha256": "38c3f03e30a4d5d229aeb7bf638e778322f8179d0ed0d4953eb22f88d8e0cf6b",
+    "malicious_label": 1,
+    "threshold": 0.9
+  }
+}

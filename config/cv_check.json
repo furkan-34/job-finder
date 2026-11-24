@@ -1,0 +1,39 @@
+{
+  "notes": "Terms for the stage 3b check of the cv-writer agent's answer (src/jobfinder/cv/writer.py). aliases: names of the same skill; a posting's name counts as in the profile when the profile has any name of its group, and the skill list uses the profile's own spelling. generic: skills a posting may ask for that are not technologies (soft skills, ways of working); they are never 'a skill the profile does not have'. Matching ignores case and extra spaces.",
+  "aliases": [
+    ["PostgreSQL", "Postgres", "Postgre SQL"],
+    ["Go", "Golang"],
+    ["Kubernetes", "K8s"],
+    ["JavaScript", "JS"],
+    ["TypeScript", "TS"],
+    ["Node.js", "Node", "NodeJS"],
+    ["React", "React.js", "ReactJS"],
+    ["Vue", "Vue.js", "VueJS"],
+    ["Next.js", "NextJS"],
+    ["AWS", "Amazon Web Services"],
+    ["GCP", "Google Cloud", "Google Cloud Platform"],
+    ["Azure", "Microsoft Azure"],
+    ["MongoDB", "Mongo"],
+    ["Elasticsearch", "Elastic Search"],
+    ["CI/CD", "CI", "CD", "Continuous Integration", "Continuous Delivery", "Continuous Deployment"],
+    ["REST", "RESTful", "REST API", "REST APIs", "RESTful APIs"],
+    ["Microservices", "Microservice", "Microservice architecture", "Microservices architecture"],
+    ["Machine Learning", "ML"],
+    ["Natural Language Processing", "NLP"],
+    ["C#", "CSharp"],
+    ["C++", "CPP"],
+    [".NET", "dotnet", ".NET Core"],
+    ["Amazon S3", "S3"],
+    ["RabbitMQ", "Rabbit MQ"],
+    ["Apache Kafka", "Kafka"],
+    ["Apache Spark", "Spark", "PySpark"]
+  ],
+  "generic": [
+    "Communication", "Communication skills", "Written communication", "Verbal communication",
+    "Teamwork", "Collaboration", "Cross-functional collaboration", "Leadership", "Technical leadership",
+    "Mentoring", "Mentorship", "Coaching", "Ownership", "Problem solving", "Problem-solving",
+    "Analytical skills", "Analytical thinking", "Critical thinking", "Attention to detail",
+    "Time management", "Self-motivated", "Adaptability", "Stakeholder management", "Presentation skills",
+    "Customer focus", "Curiosity", "Fast learner", "Proactive", "Independent", "Organizational skills"
+  ]
+}
